@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:13.3
+    container_name: docker_db
+    environment:
+      POSTGRES_DB: "authorization_db"
+      POSTGRES_USER: "psql"
+      POSTGRES_PASSWORD: "psql"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - .:/var/lib/postgresql/data
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+    ports:
+      - "5432:5432"
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    restart:  always

@@ -1,0 +1,11 @@
+server:
+  port: 8080
+database:
+  user: psql
+  password: psql
+  port: 5432
+  host: docker_db
+  db_name: authorization_db
+token:
+  secret_word: secret-word
+  expired: 24h
