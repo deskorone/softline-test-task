@@ -19,16 +19,16 @@ func NewValidator() *Validator {
 func (v Validator) Validate(user entity.User) error {
 	var builder strings.Builder
 	if !v.emailValidate(user.Email) {
-		builder.WriteString(fmt.Sprintf("email = %s, ", user.Email))
+		builder.WriteString(fmt.Sprintf("email = %s ", user.Email))
 	}
 	if !v.loginValidate(user.Login) {
-		builder.WriteString(fmt.Sprintf("login = %s, ", user.Login))
+		builder.WriteString(fmt.Sprintf("login = %s ", user.Login))
 	}
 	if !v.phoneValidate(user.PhoneNumber) {
-		builder.WriteString(fmt.Sprintf("phone_number = %s, ", user.Email))
+		builder.WriteString(fmt.Sprintf("phone_number = %s ", user.PhoneNumber))
 	}
 	if !v.passwordValidate(user.Password) {
-		builder.WriteString(fmt.Sprintf("password = %s, ", user.Password))
+		builder.WriteString(fmt.Sprintf("password = %s ", user.Password))
 	}
 	if builder.Len() != 0 {
 		return errors.New(builder.String())

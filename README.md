@@ -12,7 +12,7 @@
   "login" : "testtest",
   "email" : "test@example.com",
   "password" : "secret_word",
-  "phone_number" : "780000000"
+  "phone_number" : "89005552525"
 }
 ```
 ### Ответ на запрос
@@ -21,7 +21,7 @@
   "id" : 1,
   "login" : "testtest",
   "email" : "test@example.com",
-  "phone_number" : "780000000"
+  "phone_number" : "89005552525"
 }
 ```
 

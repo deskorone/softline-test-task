@@ -2,15 +2,7 @@ FROM golang:1.19-alpine
 
 WORKDIR /app
 
-COPY internal ./internal/
-
-COPY cmd ./cmd/
-
-COPY ./go.mod .
-
-COPY ./config.yaml .
-
-COPY pkg ./pkg
+COPY . .
 
 RUN go mod tidy
 
