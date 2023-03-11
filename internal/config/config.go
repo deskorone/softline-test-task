@@ -7,14 +7,14 @@ import (
 	"time"
 )
 
-// Config - Структура конфига приложения
+// Config - конфиг приложения
 type Config struct {
 	Database DatabaseConfig `yaml:"database"`
 	Token    TokenConfig    `yaml:"token"`
 	Server   Server         `yaml:"server"`
 }
 
-// DatabaseConfig - кофнфиг базы дынных
+// DatabaseConfig - конфиг базы дынных
 type DatabaseConfig struct {
 	User     string `yaml:"user"`
 	Password string `yaml:"password"`
@@ -29,6 +29,7 @@ type TokenConfig struct {
 	Expired    time.Duration `yaml:"expired"`
 }
 
+// Server - конфиг сервера
 type Server struct {
 	Port int `yaml:"port"`
 }

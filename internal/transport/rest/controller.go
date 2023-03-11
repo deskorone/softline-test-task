@@ -13,17 +13,17 @@ import (
 	Транспортный слой приложения
 */
 
-// IService - интерфейс бизнес-логики приложения
-type IService interface {
+// AuthService - интерфейс бизнес-логики приложения
+type AuthService interface {
 	Registration(user entity.User) (*entity.UserRegistrationRespDto, error)
 	Login(user entity.UserLoginDto) (string, error)
 }
 
 type Controller struct {
-	service IService
+	service AuthService
 }
 
-func NewController(service IService) *Controller {
+func NewController(service AuthService) *Controller {
 	return &Controller{service: service}
 }
 

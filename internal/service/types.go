@@ -2,6 +2,7 @@ package service
 
 import "errors"
 
+// Ошибки возникающие на уровне бизнес-логики
 var (
 	ErrUserAlreadyRegistered = errors.New("пользователь с такими данными уже зарегистрирован")
 	ErrIncorrectPassword     = errors.New("введенный пароль неверный")

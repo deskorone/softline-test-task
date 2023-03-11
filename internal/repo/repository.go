@@ -25,7 +25,7 @@ func NewRepository(db *sql.DB) *Repository {
 	return &Repository{db: db}
 }
 
-// Repository - структура для работы с бд имплементирует IRepository
+// Repository - структура для работы с бд имплементирует UserRepository
 type Repository struct {
 	db *sql.DB
 }

@@ -1,6 +1,6 @@
 package entity
 
-// UserLoginDto - объект который призодит при авторизации пользователя
+// UserLoginDto - объект который приходит при авторизации пользователя
 type UserLoginDto struct {
 	Login    string `json:"login"`
 	Password string `json:"password"`
@@ -14,7 +14,7 @@ type UserRegistrationRespDto struct {
 	PhoneNumber string `json:"phone_number"`
 }
 
-// TokenDto - ответ авторизацию
+// TokenDto - ответ на авторизацию
 type TokenDto struct {
 	Token string `json:"token"`
 }

@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+// Validator - структура имплементирующая UserValidator
 type Validator struct {
 }
 

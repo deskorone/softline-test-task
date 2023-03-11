@@ -2,7 +2,7 @@ package hasher
 
 import "golang.org/x/crypto/bcrypt"
 
-// BcryptHasher - структура для хэширования паролей
+// BcryptHasher - структура для хэширования паролей имплементирует Hasher
 type BcryptHasher struct {
 }
 
