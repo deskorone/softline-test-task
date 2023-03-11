@@ -1,8 +1,11 @@
 package main
 
 import (
+	"context"
+	"fmt"
 	_ "github.com/lib/pq"
 	"log"
+	"net/http"
 	"os"
 	"os/signal"
 	"softline-test-task/internal/config"
@@ -13,6 +16,7 @@ import (
 	"softline-test-task/internal/transport/rest"
 	"softline-test-task/internal/validator"
 	"syscall"
+	"time"
 )
 
 func main() {
@@ -24,6 +28,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
+	defer cancel()
+	if err := db.PingContext(ctx); err != nil {
+		panic(err)
+	}
 
 	newRepository := repo.NewRepository(db)
 	newHasher := hasher.NewHasher()
@@ -31,9 +40,18 @@ func main() {
 	newValidator := validator.NewValidator()
 
 	newService := service.NewService(newRepository, newHasher, newAuthToken, newValidator)
-	newController := rest.NewController(newService)
+	newController := rest.NewRestController(newService)
 
-	server := rest.CreateServer(newController, conf.Server)
+	mux := http.NewServeMux()
+
+	mux.HandleFunc("/register", newController.Register)
+	mux.HandleFunc("/login", newController.Login)
+
+	server := &http.Server{
+		Addr:    fmt.Sprintf(":%d", conf.Server.Port),
+		Handler: mux,
+	}
+
 	go func() {
 		if err := server.ListenAndServe(); err != nil {
 			log.Fatal(err)

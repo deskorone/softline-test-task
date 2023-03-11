@@ -19,12 +19,12 @@ type UserRepository interface {
 // Hasher - интерфейс для хэширования паролей
 type Hasher interface {
 	Hash(password string) (string, error) // Метод хэширующий пароль
-	CheckHash(hash, password string) bool // Метод сопостовляющий хэш и пароль
+	CheckHash(hash, password string) bool // Метод сопоставляющий хэш и пароль
 }
 
-// AuthToken - интерфейс для работы с токенами авторизации (для примера результата аторизации)
+// AuthToken - интерфейс для работы с токенами авторизации (для примера результата авторизации)
 type AuthToken interface {
-	GenerateToken(user entity.User) (string, error) // Метод для генерации токена атворизации
+	GenerateToken(user entity.User) (string, error) // Метод для генерации токена авторизации
 }
 
 // UserValidator - интерфейс для валидации пользователя

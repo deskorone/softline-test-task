@@ -57,7 +57,7 @@ func (r *Repository) CreateUser(user entity.User) (*entity.UserRegistrationRespD
 func (r *Repository) GetUser(login string) (*entity.User, error) {
 	u := entity.User{}
 
-	q := `select * from users where login=$1 limit 1`
+	q := `select id, login, email, password, phone_number  from users u where login=$1 limit 1`
 	err := r.db.QueryRow(q, login).Scan(&u.Id, &u.Login, &u.Email, &u.Password, &u.PhoneNumber)
 	return &u, err
 }

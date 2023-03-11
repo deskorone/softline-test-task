@@ -1,6 +1,6 @@
 module softline-test-task
 
-go 1.16
+go 1.19
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.0 // indirect

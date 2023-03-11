@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"softline-test-task/internal/config"
 	"softline-test-task/internal/entity"
 	"softline-test-task/pkg/helpers"
 )
@@ -19,16 +18,16 @@ type AuthService interface {
 	Login(user entity.UserLoginDto) (string, error)
 }
 
-type Controller struct {
+type RestController struct {
 	service AuthService
 }
 
-func NewController(service AuthService) *Controller {
-	return &Controller{service: service}
+func NewRestController(service AuthService) *RestController {
+	return &RestController{service: service}
 }
 
 // Register - POST метод осуществляющий регистрацию
-func (c *Controller) Register(w http.ResponseWriter, r *http.Request) {
+func (c *RestController) Register(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		helpers.Failed(w, helpers.MethodNotAllowed, http.StatusMethodNotAllowed)
 		return
@@ -52,7 +51,7 @@ func (c *Controller) Register(w http.ResponseWriter, r *http.Request) {
 }
 
 // Login - POST метод осуществляющий авторизацию
-func (c Controller) Login(w http.ResponseWriter, r *http.Request) {
+func (c RestController) Login(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		helpers.Failed(w, helpers.MethodNotAllowed, http.StatusMethodNotAllowed)
 		return
@@ -73,18 +72,4 @@ func (c Controller) Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	helpers.Success(w, entity.TokenDto{Token: token})
-}
-
-// CreateServer - функция для создания http-сервера
-func CreateServer(c *Controller, conf config.Server) *http.Server {
-
-	mux := http.NewServeMux()
-
-	mux.HandleFunc("/register", c.Register)
-	mux.HandleFunc("/login", c.Login)
-
-	return &http.Server{
-		Addr:    fmt.Sprintf(":%d", conf.Port),
-		Handler: mux,
-	}
 }
