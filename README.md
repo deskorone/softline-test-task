@@ -7,9 +7,9 @@
 ### Тело запроса
 ```json 
 {
-  "login" : "test",
+  "login" : "testtest",
   "email" : "test@example.com",
-  "password" : "secret word",
+  "password" : "secret_word",
   "phone_number" : "780000000"
 }
 ```
@@ -17,7 +17,7 @@
 ```json
 {
   "id" : 1,
-  "login" : "test",
+  "login" : "testtest",
   "email" : "test@example.com",
   "phone_number" : "780000000"
 }
@@ -27,11 +27,11 @@
 ### Тело запроса
 ```json
 {
-  "login" : "test",
+  "login" : "testtest",
   "password" : "secret_word"
 }
 ```
-### Ответ на запрос
+### Ответ на запрос при успешной авторизации
 ```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6..."
