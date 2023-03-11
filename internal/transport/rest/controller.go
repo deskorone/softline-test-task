@@ -80,7 +80,7 @@ func CreateServer(c *Controller, conf config.Server) *http.Server {
 
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/registration", c.Register)
+	mux.HandleFunc("/register", c.Register)
 	mux.HandleFunc("/login", c.Login)
 
 	return &http.Server{
