@@ -36,7 +36,7 @@ func TestRegistration(t *testing.T) {
 		}
 	})
 
-	t.Run("Невалидные даненые", func(t *testing.T) {
+	t.Run("Невалидные данные", func(t *testing.T) {
 		cases := []entity.User{
 			{
 				Id:          1,
@@ -104,7 +104,7 @@ func TestRegistration(t *testing.T) {
 		}
 	})
 
-	t.Run("Пользователь уже зарегестрирован", func(t *testing.T) {
+	t.Run("Пользователь уже зарегистрирован", func(t *testing.T) {
 		user := entity.User{
 			Id:          0,
 			Login:       "1",
